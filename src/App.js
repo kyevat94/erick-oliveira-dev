@@ -1,19 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import "./components/TopBar/TopBar";
 import TopBar from "./components/TopBar/TopBar";
+import HeaderDiv from "./components/HeaderDiv/HeaderDiv";
 
 function App() {
   const [boxExplainText, setBoxExplainText] = useState("");
 
-  const [siteLang, setSiteLang] = useState(0); // 0: english, 1: portugues
-
-  var personName = "Érick Oliveira";
-  var personDescription = [
-    "Front-End Web Developer",
-    "Desenvolvedor Web Front-End",
-  ];
+  const [siteLang, setSiteLang] = useState("english");
 
   function showLangInfo(lang) {
     document.getElementById("box-explain").classList.add("visible");
@@ -29,30 +24,38 @@ function App() {
     setBoxExplainText("");
   }
 
+  const [hinfo, setHInfo] = useState({ name: "", desc: "" });
+
+  useEffect(() => {
+    console.log("Page Starts!");
+    ftch();
+  }, []);
+
+  function ftch() {
+    fetch("http://erickoliveiradev.pythonanywhere.com/get_data/"+siteLang)
+      .then((response) => response.json())
+      .then((data) => {
+        setHInfo({ name: data.name, desc: data.desc, resume: data.resume });
+        console.log(data);
+      });
+  }
+
   return (
     <div className="App">
       <TopBar />
       <div className="main">
-        <div className="header-div">
-          <div className="capa-header-div"></div>
-          <div className="foto-main"></div>
-          <div className="text-header-div">
-            <h1>{personName}</h1>
-            <h3>{personDescription[siteLang]}</h3>
-          </div>
-          <div className="footer-header-div"></div>
-        </div>
+        <HeaderDiv name={hinfo.name} desc={hinfo.desc} lan={siteLang} />
         <div className="about-me-div">
           <div className="text-about-me-div">
             <p>
-              Student of Software Engeneering by Anhanguera University, Math
-              teacher by Estácio University, and Front-End developer, with
-              knowledge of &nbsp;
+              {hinfo.resume}
+              &nbsp;
               <span
                 className="lang-box"
                 id="html-box"
                 onMouseOver={() => showLangInfo("html")}
                 onMouseOut={setDefaultLangInfo}
+                onClick={ftch}
               >
                 HTML
               </span>
@@ -71,10 +74,6 @@ function App() {
               , &nbsp;
               <span className="lang-box" id="react-box">
                 React
-              </span>
-              , &nbsp;
-              <span className="lang-box" id="sql-box">
-                SQL
               </span>
               , and &nbsp;
               <span className="lang-box" id="py-box">

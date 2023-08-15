@@ -1,0 +1,47 @@
+/* top bar */
+
+.top-bar {
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #a7c5e3;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+  }
+  
+  /* search bar on top bar */
+  
+  .search-top {
+    padding: 0.5rem;
+    background-color: white;
+    border: none;
+    border-radius: 5px 15px 5px 15px;
+  }
+  
+  @media (max-width: 768px) {
+    /*mobile*/
+    .search-top {
+      width: 40%;
+    }
+    .search-top:focus {
+      outline: 0;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    /*desktop*/
+    .search-top {
+      width: 10rem;
+      transition-timing-function: ease-in-out;
+      transition: 0.5s;
+      margin-left: 10%;
+    }
+    .search-top:focus {
+      width: 30rem;
+      transition-timing-function: ease-in-out;
+      transition: 0.5s;
+      outline: 0;
+    }
+  }
