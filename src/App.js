@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     console.log("Page Starts!");
     ftch();
-  }, []);
+  }, []); 
 
   function ftch() {
     fetch("http://erickoliveiradev.pythonanywhere.com/get_data/"+siteLang)
