@@ -32,7 +32,7 @@ function App() {
   }, []); 
 
   function ftch() {
-    fetch("http://erickoliveiradev.pythonanywhere.com/get_data/"+siteLang)
+    fetch("https://erickoliveiradev.pythonanywhere.com/get_data/"+siteLang)
       .then((response) => response.json())
       .then((data) => {
         setHInfo({ name: data.name, desc: data.desc, resume: data.resume });
