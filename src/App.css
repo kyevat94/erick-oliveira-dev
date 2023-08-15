@@ -167,7 +167,6 @@ body {
 @media (min-width: 769px) {
   /* desktop */
   .about-me-div {
-    /*padding: 10px;*/
     width: 50%;
     min-width: 700px;
     margin-left: auto;
@@ -188,6 +187,7 @@ body {
   font-weight: bold;
   transition-timing-function: ease-in-out;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .lang-box:hover {
@@ -196,9 +196,16 @@ body {
   transition: 0.5s;
 }
 
-.box-default {
+#box-explain {
   transition-timing-function: ease-in-out;
   transition: 0.5s;
-  font-family: monospace;
-  font-size: 16px;
+  height: 0;
+  color: transparent;
+}
+
+#box-explain.visible {
+  transition-timing-function: ease-in-out;
+  transition: 0.7s;
+  height: 100px;
+  color: #373333;
 }
