@@ -19,7 +19,7 @@ function App() {
     document.getElementById("box-explain").classList.add("visible");
     if (lang === "html") {
       setBoxExplainText(
-        "<p>HTML is the standard markup language for Web pages.</p><p>It defines all the elements that are in the web page</p"
+        "<p>HTML is the standard markup language for Web pages.</p><p>It defines all the elements that are in the web page</p>"
       );
     }
   }
