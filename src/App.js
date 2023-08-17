@@ -8,7 +8,15 @@ import HeaderDiv from "./components/HeaderDiv/HeaderDiv";
 function App() {
   const [boxExplainText, setBoxExplainText] = useState("");
 
-  const [siteLang, setSiteLang] = useState("english");
+  const [siteLang, setSiteLang] = useState("portugues");
+
+  function langHandler(lang) {
+    console.log("language choosed: " + lang);
+    if (lang !== siteLang) {
+      setSiteLang(lang);
+      ftch(lang);
+    }
+  }
 
   function showLangInfo(lang) {
     document.getElementById("box-explain").classList.add("visible");
@@ -28,11 +36,11 @@ function App() {
 
   useEffect(() => {
     console.log("Page Starts!");
-    ftch();
-  }, []); 
+    ftch(siteLang);
+  }, []);
 
-  function ftch() {
-    fetch("https://erickoliveiradev.pythonanywhere.com/get_data/"+siteLang)
+  function ftch(lang) {
+    fetch("https://erickoliveiradev.pythonanywhere.com/get_data/" + lang)
       .then((response) => response.json())
       .then((data) => {
         setHInfo({ name: data.name, desc: data.desc, resume: data.resume });
@@ -42,20 +50,26 @@ function App() {
 
   return (
     <div className="App">
-      <TopBar />
+      <TopBar onLangChange={langHandler} />
       <div className="main">
         <HeaderDiv name={hinfo.name} desc={hinfo.desc} lan={siteLang} />
+
         <div className="about-me-div">
           <div className="text-about-me-div">
             <p>
               {hinfo.resume}
+              <table>
+                <tr>
+                  <th className="lang-box">HTML</th>
+                  <th className="lang-box">CSS</th>
+                </tr>
+              </table>
               &nbsp;
               <span
                 className="lang-box"
                 id="html-box"
                 onMouseOver={() => showLangInfo("html")}
                 onMouseOut={setDefaultLangInfo}
-                onClick={ftch}
               >
                 HTML
               </span>
