@@ -33,6 +33,7 @@ function Resume(props) {
 
   useEffect(() => {
     ftch(props.lan);
+    setDefaultLangInfo()
   }, [props.lan]);
 
   function ftch(lang) {
