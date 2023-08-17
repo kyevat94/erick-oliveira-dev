@@ -9,6 +9,7 @@
   /*mobile*/
   .about-me-div {
     width: 100%;
+    border-radius: 0px 50px 0px 50px;
   }
   .text-about-me-div {
     margin: 20px;
@@ -19,21 +20,7 @@
     width: 100%;
     flex-direction: column;
     flex-flow: row wrap;
-  }
-  .lang-box {
-    color: rgb(161, 43, 0);
-    font-family: monospace;
-    font-size: 16px;
-    font-weight: bold;
-    transition-timing-function: ease-in-out;
-    transition: 0.5s;
-    cursor: pointer;
-    text-align: center;
-    border: solid 1px;
-    border-color: #373333;
-    margin: 2px;
-    padding: 10px;
-    border-radius: 20px;
+    margin-bottom: 20px;
   }
   #box-explain.visible {
     transition-timing-function: ease-in-out;
@@ -50,7 +37,8 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    border-radius: 35px;
+    /*border-radius: 35px;*/
+    border-radius: 10px 50px 10px 50px;
   }
   .text-about-me-div {
     margin: 40px;
@@ -59,28 +47,31 @@
   .languages {
     display: flex;
     width: 100%;
-  }
-  .lang-box {
-    color: rgb(161, 43, 0);
-    font-family: monospace;
-    font-size: 16px;
-    font-weight: bold;
-    transition-timing-function: ease-in-out;
-    transition: 0.5s;
-    cursor: pointer;
-    flex: 1;
-    text-align: center;
-    border: solid 1px;
-    border-color: #373333;
-    margin: 2px;
-    padding: 10px;
-    border-radius: 20px;
+    margin-bottom: 20px;
   }
   #box-explain.visible {
     transition-timing-function: ease-in-out;
     transition: 0.7s;
     height: 50px;
   }
+}
+
+.lang-box {
+  color: rgb(161, 43, 0);
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+  transition-timing-function: ease-in-out;
+  transition: 0.5s;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  border: solid 2px;
+  border-color: #b8adad;
+  margin: 2px;
+  padding: 10px;
+  /*border-radius: 20px;*/
+  border-radius: 5px 15px 5px 15px;
 }
 
 .lang-box:hover {
@@ -95,16 +86,16 @@
   transition: 0.5s;
   height: 30px;
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   margin-top: 30px;
 }
 
 #box-explain.visible {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Emoji,
     Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
-    color: #373333;
-    text-align: left;
-    font-style: normal;
+  color: #373333;
+  text-align: left;
+  font-style: normal;
 }

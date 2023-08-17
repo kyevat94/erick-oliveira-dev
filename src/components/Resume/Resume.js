@@ -17,23 +17,26 @@ function Resume(props) {
 
   function setDefaultLangInfo() {
     document.getElementById("box-explain").classList.remove("visible");
-    if (props.lan === "portugues"){
-        setBoxExplainText("Passe o mouse / clique em alguma linguagem para saber mais sobre ela");
-    }else if (props.lan === "english"){
-        setBoxExplainText("Hover mouse / click some language to know more about it");
+    if (props.lan === "portugues") {
+      setBoxExplainText(
+        "Passe o mouse / clique em alguma linguagem para saber mais sobre ela"
+      );
+    } else if (props.lan === "english") {
+      setBoxExplainText(
+        "Hover mouse / click some language to know more about it"
+      );
     }
-    
   }
 
   useEffect(() => {
     //console.log("Resume starts");
     ftch(props.lan);
-    setDefaultLangInfo()
+    setDefaultLangInfo();
   }, []);
 
   useEffect(() => {
     ftch(props.lan);
-    setDefaultLangInfo()
+    setDefaultLangInfo();
   }, [props.lan]);
 
   function ftch(lang) {
