@@ -54,8 +54,8 @@ function Resume(props) {
   return (
     <div className="about-me-div">
       <div className="text-about-me-div">
+        <h1>{props.resume_title}</h1>
         <p>{props.resume}</p>
-
         <div className="languages">
           {linfo.map((lang) => (
             <div

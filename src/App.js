@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import "./components/TopBar/TopBar";
 import TopBar from "./components/TopBar/TopBar";
 import HeaderDiv from "./components/HeaderDiv/HeaderDiv";
 import Resume from "./components/Resume/Resume";
+import Portfolio from "./components/Portfolio/Portfolio";
 
 function App() {
   const [siteLang, setSiteLang] = useState("portugues");
@@ -17,7 +17,12 @@ function App() {
     }
   }
 
-  const [hinfo, setHInfo] = useState({ name: "", desc: "", resume: "" });
+  const [hinfo, setHInfo] = useState({
+    name: "",
+    desc: "",
+    resume_title: "",
+    resume: "",
+  });
 
   useEffect(() => {
     //console.log("App starts");
@@ -28,7 +33,12 @@ function App() {
     fetch("https://erickoliveiradev.pythonanywhere.com/get_main_info/" + lang)
       .then((response) => response.json())
       .then((data) => {
-        setHInfo({ name: data.name, desc: data.desc, resume: data.resume });
+        setHInfo({
+          name: data.name,
+          desc: data.desc,
+          resume_title: data.resume_title,
+          resume: data.resume,
+        });
       });
   }
 
@@ -37,7 +47,12 @@ function App() {
       <TopBar onLangChange={langHandler} />
       <div className="main">
         <HeaderDiv name={hinfo.name} desc={hinfo.desc} lan={siteLang} />
-        <Resume resume={hinfo.resume} lan={siteLang}/>
+        <Resume
+          resume={hinfo.resume}
+          resume_title={hinfo.resume_title}
+          lan={siteLang}
+        />
+        <Portfolio />
       </div>
     </div>
   );
