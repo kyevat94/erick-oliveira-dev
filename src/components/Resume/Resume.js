@@ -6,6 +6,9 @@ function Resume(props) {
 
   const [linfo, setLInfo] = useState([{ name: "", desc: "" }]);
 
+  const limpsum =
+    "Sed consequat ligula ac enim hendrerit, in commodo augue facilisis. Donec varius efficitur enim, in ultrices dui pellentesque eget. Maecenas tempor ante eget luctus facilisis.";
+
   function showLangInfo(lang) {
     document.getElementById("box-explain").classList.add("visible");
     for (let i = 0; i < linfo.length; i++) {
@@ -35,12 +38,13 @@ function Resume(props) {
   }, []);
 
   useEffect(() => {
+    setLInfo([{ name: "", desc: "" }]);
     ftch(props.lan);
     setDefaultLangInfo();
   }, [props.lan]);
 
   function ftch(lang) {
-    fetch("https://erickoliveiradev.pythonanywhere.com/get_dev_langs/" + lang)
+    fetch("https://erickoliveiradev.pythonanywhere.com/get_dev_langs/" + props.lan)
       .then((response) => response.json())
       .then((data) => {
         let arr = []; //Array.from(linfo);
@@ -54,8 +58,20 @@ function Resume(props) {
   return (
     <div className="about-me-div">
       <div className="text-about-me-div">
-        <h1>{props.resume_title}</h1>
-        <p>{props.resume}</p>
+        <h1 className="h1-1">
+          {props.resume_title ? (
+            props.resume_title
+          ) : (
+            <span className="invisible">Title here</span>
+          )}
+        </h1>
+        <p>
+          {props.resume ? (
+            props.resume
+          ) : (
+            <span className="invisible-p">{limpsum}</span>
+          )}
+        </p>
         <div className="languages">
           {linfo.map((lang) => (
             <div
@@ -64,7 +80,11 @@ function Resume(props) {
               onMouseOver={() => showLangInfo(lang.name)}
               onMouseOut={setDefaultLangInfo}
             >
-              {lang.name}
+              {lang.name ? (
+                lang.name
+              ) : (
+                <span className="invisible">Programming Language</span>
+              )}
             </div>
           ))}
         </div>

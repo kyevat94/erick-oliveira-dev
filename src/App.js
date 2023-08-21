@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import "./App.css";
 
 import TopBar from "./components/TopBar/TopBar";
@@ -13,6 +14,12 @@ function App() {
     console.log("language chosen: " + lang);
     if (lang !== siteLang) {
       setSiteLang(lang);
+      setHInfo({
+        name: "",
+        desc: "",
+        resume_title: "",
+        resume: "",
+      });
       ftch(lang);
     }
   }
@@ -22,11 +29,13 @@ function App() {
     desc: "",
     resume_title: "",
     resume: "",
+    port_title: "",
+    port_text: "",
   });
 
   useEffect(() => {
     //console.log("App starts");
-    ftch(siteLang);
+    ftch(siteLang)
   }, []);
 
   function ftch(lang) {
@@ -38,6 +47,8 @@ function App() {
           desc: data.desc,
           resume_title: data.resume_title,
           resume: data.resume,
+          port_title: data.port_title,
+          port_text: data.port_text,
         });
       });
   }
@@ -48,11 +59,14 @@ function App() {
       <div className="main">
         <HeaderDiv name={hinfo.name} desc={hinfo.desc} lan={siteLang} />
         <Resume
-          resume={hinfo.resume}
           resume_title={hinfo.resume_title}
+          resume={hinfo.resume}
           lan={siteLang}
         />
-        <Portfolio />
+        <Portfolio 
+          port_title={hinfo.port_title}
+          port_text={hinfo.port_text}
+        />
       </div>
     </div>
   );

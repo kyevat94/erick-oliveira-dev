@@ -102,3 +102,7 @@
   text-align: left;
   font-style: normal;
 }
+
+.h1-1 {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
