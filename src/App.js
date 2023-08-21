@@ -8,7 +8,7 @@ import Resume from "./components/Resume/Resume";
 import Portfolio from "./components/Portfolio/Portfolio";
 
 function App() {
-  const [siteLang, setSiteLang] = useState("portugues");
+  const [siteLang, setSiteLang] = useState("english");
 
   function langHandler(lang) {
     console.log("language chosen: " + lang);
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      <TopBar onLangChange={langHandler} />
+      <TopBar onLangChange={langHandler} hinfo={hinfo}/>
       <div className="main">
         <HeaderDiv name={hinfo.name} desc={hinfo.desc} lan={siteLang} />
         <Resume
