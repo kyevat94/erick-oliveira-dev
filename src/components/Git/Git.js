@@ -21,7 +21,7 @@ function Git(props) {
             <span className="invisible-p">{limpsum}</span>
           )}
         </p>
-        <a href="https://github.com/kyevat94?tab=repositories" target="blank">
+        <a href="https://github.com/kyevat94" target="blank">
           <div className="git-svg"></div>
           <div className="repo">
             <p>
