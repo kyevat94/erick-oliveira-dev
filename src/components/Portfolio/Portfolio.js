@@ -21,7 +21,7 @@ function Portfolio(props) {
             <span className="invisible-p">{limpsum}</span>
           )}
         </p>
-        <p>UNDER CONSTRUCTION</p>
+        <p>__UNDER_CONSTRUCTION__</p>
       </div>
     </div>
   );

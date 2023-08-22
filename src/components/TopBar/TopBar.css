@@ -153,3 +153,7 @@
   outline: solid white 2px;
   outline-offset: -2px;
 }
+
+.btn-lang:hover {
+  cursor: pointer;
+}
