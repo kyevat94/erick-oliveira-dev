@@ -4,12 +4,18 @@ import "./TopBar.css";
 function TopBar(props) {
   const [isActive, setActive] = useState("false");
 
-  function langHandler(lang) {
-    props.onLangChange(lang);
+  const [language, setLanguage] = useState("true");
+
+  function langHandler() {
+    if (!language) {
+      props.onLangChange("english");
+    }else{
+      props.onLangChange("portugues");
+    }
+    setLanguage(!language);
   }
 
   function menuToggle() {
-    //document.getElementsByClassName("drop-menu").classNameList.toggle('active');
     setActive(!isActive);
   }
 
@@ -31,11 +37,6 @@ function TopBar(props) {
         <div className="menu-internal">
           {menu_items.map((item) => (
             <div key={Math.random(1000)} className="menu-item">
-              <p>
-                &lt;{" "}
-                {item ? item : <span className="invisible">menu item</span>}{" "}
-                /&gt;
-              </p>
               <a href="#">
                 &lt;{" "}
                 {item ? item : <span className="invisible">menu item</span>}{" "}
@@ -47,23 +48,17 @@ function TopBar(props) {
       </div>
       <div className="btn-holder">
         <button
-          id="btn-br"
-          className="btn-lang-changer"
-          onClick={() => langHandler("portugues")}
-        ></button>
-        <button
-          id="btn-us"
-          className="btn-lang-changer"
-          onClick={() => langHandler("english")}
+          className={language ? "btn-lang" : "btn-lang change"}
+          onClick={langHandler}
         ></button>
       </div>
       <div className={isActive ? "drop-menu" : "drop-menu active"}>
         {menu_items.map((item) => (
           <div key={Math.random(1000)} className="menu-item">
-            <p>
+            <a href="#" onClick={menuToggle}>
               &lt; {item ? item : <span className="invisible">menu item</span>}{" "}
               /&gt;
-            </p>
+            </a>
           </div>
         ))}
       </div>

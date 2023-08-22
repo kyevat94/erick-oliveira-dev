@@ -6,48 +6,48 @@ function Resume(props) {
 
   const [linfo, setLInfo] = useState([{ name: "", desc: "" }]);
 
-  const limpsum =
+  const [showLang, setShowLang] = useState(false);
+
+  const lipsum =
     "Sed consequat ligula ac enim hendrerit, in commodo augue facilisis. Donec varius efficitur enim, in ultrices dui pellentesque eget. Maecenas tempor ante eget luctus facilisis.";
 
+  const lipsum2 =
+    "Sed consequat ligula ac enim hendrerit, in commodo augue facilisis.";
+
   function showLangInfo(lang) {
+    setShowLang(true);
     document.getElementById("box-explain").classList.add("visible");
     for (let i = 0; i < linfo.length; i++) {
       if (linfo[i].name === lang) {
-        setBoxExplainText("<p>" + linfo[i].desc + "</p>");
+        setBoxExplainText(linfo[i].desc);
       }
     }
   }
 
   function setDefaultLangInfo() {
+    setShowLang(false);
     document.getElementById("box-explain").classList.remove("visible");
-    if (props.lan === "portugues") {
-      setBoxExplainText(
-        "Passe o mouse / clique em alguma linguagem para saber mais sobre ela"
-      );
-    } else if (props.lan === "english") {
-      setBoxExplainText(
-        "Hover mouse / click some language to know more about it"
-      );
-    }
   }
 
   useEffect(() => {
     //console.log("Resume starts");
-    ftch(props.lan);
+    ftch();
     setDefaultLangInfo();
   }, []);
 
   useEffect(() => {
     setLInfo([{ name: "", desc: "" }]);
-    ftch(props.lan);
+    ftch();
     setDefaultLangInfo();
   }, [props.lan]);
 
-  function ftch(lang) {
-    fetch("https://erickoliveiradev.pythonanywhere.com/get_dev_langs/" + props.lan)
+  function ftch() {
+    fetch(
+      "https://erickoliveiradev.pythonanywhere.com/get_dev_langs/" + props.lan
+    )
       .then((response) => response.json())
       .then((data) => {
-        let arr = []; //Array.from(linfo);
+        let arr = [];
         for (let d = 0; d < data.length; d++) {
           arr.push({ name: data[d][0], desc: data[d][1] });
         }
@@ -66,10 +66,10 @@ function Resume(props) {
           )}
         </h1>
         <p>
-          {props.resume ? (
-            props.resume
+          {props.resume_text ? (
+            props.resume_text
           ) : (
-            <span className="invisible-p">{limpsum}</span>
+            <span className="invisible-p">{lipsum}</span>
           )}
         </p>
         <div className="languages">
@@ -90,11 +90,17 @@ function Resume(props) {
         </div>
 
         <hr />
-        <div
-          id="box-explain"
-          className="box-default"
-          dangerouslySetInnerHTML={{ __html: boxExplainText }}
-        ></div>
+
+        <div id="box-explain" className="box-default">
+          {showLang ? (
+            boxExplainText
+          ) : props.resume_hint ? (
+            props.resume_hint
+          ) : (
+            <span className="invisible-p">{lipsum2}</span>
+          )}
+          {showLang}
+        </div>
       </div>
       <div className="footer-header-div"></div>
     </div>
